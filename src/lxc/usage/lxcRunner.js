@@ -23,11 +23,11 @@ class LxcRunner {
             console.log('Container:', lxc.vmid, 'Memory:', mem, 'CPU:', cpu);
             console.log('--------------------------------------------------')
 
-            if (mem > process.env.USAGE_FIX_POINT && !this.lastTenMinutes(lxc, "mem")) {
+            if (!this.lastTenMinutes(lxc, "mem") && mem > process.env.USAGE_FIX_POINT) {
                 await this.notifyRunner.memNotify(lxc);
             } else {
             }
-            if (cpu > process.env.USAGE_FIX_POINT && !this.lastTenMinutes(lxc, "cpu")) {
+            if (!this.lastTenMinutes(lxc, "cpu") && cpu > process.env.USAGE_FIX_POINT) {
                 await this.notifyRunner.cpuNotify(lxc);
             } else {
             }
