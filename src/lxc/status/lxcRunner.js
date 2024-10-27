@@ -29,9 +29,9 @@ class LxcRunner {
             console.log('Container:', lxc.vmid, 'Status:', lxc.status);
             console.log('--------------------------------------------------')
 
-            if (lxc.status !== 'running' && !this.isOfflineNotified(lxc.vmid)) {
+            if (!this.isOfflineNotified(lxc.vmid) && lxc.status !== 'running') {
                 this.notifyRunner.isOffline(lxc);
-            } else if (lxc.status === 'running' && !this.isOnlineNotified(lxc.vmid)) {
+            } else if (!this.isOnlineNotified(lxc.vmid) && lxc.status === 'running') {
                 this.notifyRunner.isOnline(lxc);
             }
         }
