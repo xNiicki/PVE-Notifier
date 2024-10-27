@@ -31,7 +31,7 @@ class LxcRunner {
 
             if (!this.isOfflineNotified(lxc.vmid) && lxc.status !== 'running') {
                 this.notifyRunner.isOffline(lxc);
-            } else if (!this.isOnlineNotified(lxc.vmid) && lxc.status === 'running') {
+            } else if (this.isOnlineNotified(lxc.vmid) && lxc.status === 'running') {
                 this.notifyRunner.isOnline(lxc);
             }
         }
